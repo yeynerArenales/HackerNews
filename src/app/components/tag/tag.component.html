@@ -1,0 +1,13 @@
+<div *ngIf="title == 'All' else favs" class="Rectangle" (click)="tagSelect('All')">
+    <span class="All">
+        {{title}}
+    </span>
+</div>
+
+<ng-template #favs> 
+    <div class="Rectangle" (click)="tagSelect('myFaves')">
+        <span class="My-faves">
+            {{title}}
+        </span>
+    </div>
+</ng-template>

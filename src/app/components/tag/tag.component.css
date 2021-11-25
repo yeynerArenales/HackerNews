@@ -1,0 +1,25 @@
+.Rectangle {
+    width: 98px;
+    height: 31px;
+    padding: 3px 39px 0 40px;
+    border-radius: 2px;
+    text-align: center;
+    border: solid 1px #d6d6d6;
+    cursor: pointer;
+}
+
+.All {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.75;
+    color: #606060;
+}
+
+.My-faves {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.75;
+    color: #606060;
+}
