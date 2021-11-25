@@ -1,0 +1,4 @@
+<select id="selectFramework" >
+    <option hidden selected>Select your news</option>
+    <option *ngFor="let item of frameworks" [value]="item.value">{{item.title}}</option>
+</select>
