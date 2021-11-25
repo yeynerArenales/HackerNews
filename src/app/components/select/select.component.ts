@@ -13,7 +13,7 @@ export class SelectComponent implements OnInit {
     { value: 'react', title: "React"},
     { value: 'vue', title: "Vuejs"}
   ]
-  public selectedFramework: any = null;
+  public selectedFramework: any = "";
 
   constructor() { }
 
