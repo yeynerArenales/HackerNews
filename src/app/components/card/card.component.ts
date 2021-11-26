@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -7,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  public fav: boolean = true
+  @Input() index: number = 0
+  @Input() fav: boolean = true
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  isOdd(num: number): boolean{
+      if (num%2 == 0)
+        return true
+      else
+        return false
   }
 
 }

@@ -1,7 +1,21 @@
-.Rectangle {
+.Rectangle-left {
     width: 550px;
     height: 90px;
     margin: 30px 40px 30px 150px;
+    padding: 0 0 0 26px;
+    opacity: 0.8;
+    border-radius: 6px;
+    border: solid 1px #979797;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Rectangle-right {
+    width: 550px;
+    height: 90px;
+    margin: 38px 150px 30px 40px;
     padding: 0 0 0 26px;
     opacity: 0.8;
     border-radius: 6px;

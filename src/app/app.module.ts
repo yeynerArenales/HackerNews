@@ -9,6 +9,7 @@ import { TagComponent } from './components/tag/tag.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { SelectComponent } from './components/select/select.component';
 import { CardComponent } from './components/card/card.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CardComponent } from './components/card/card.component';
     TagComponent,
     TagsComponent,
     SelectComponent,
-    CardComponent
+    CardComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,

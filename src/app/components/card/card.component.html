@@ -1,4 +1,4 @@
-<div class="Rectangle">
+<div [ngClass]="{'Rectangle-left': isOdd(index), 'Rectangle-right': !isOdd(index)}">
     <div>
         <div class="time">
             <img src="../../../assets/images/watch.png" class="iconmonstr-time-2">
