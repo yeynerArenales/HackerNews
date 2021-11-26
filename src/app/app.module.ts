@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TagComponent } from './components/tag/tag.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { SelectComponent } from './components/select/select.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SelectComponent } from './components/select/select.component';
     HeaderComponent,
     TagComponent,
     TagsComponent,
-    SelectComponent
+    SelectComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
