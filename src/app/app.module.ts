@@ -14,6 +14,7 @@ import { CardsComponent } from './components/cards/cards.component';
 
 import { SearchService } from './services/search.service';
 import { TagsService } from './services/tags.service';
+import { AllComponent } from './components/all/all.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TagsService } from './services/tags.service';
     TagsComponent,
     SelectComponent,
     CardComponent,
-    CardsComponent
+    CardsComponent,
+    AllComponent
   ],
   imports: [
     BrowserModule,
