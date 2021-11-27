@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-paged',
@@ -10,6 +10,9 @@ export class PagedComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changePage(){
   }
 
 }
