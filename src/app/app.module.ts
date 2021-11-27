@@ -17,6 +17,7 @@ import { SearchService } from './services/search.service';
 import { TagsService } from './services/tags.service';
 import { FavesService } from './services/faves.service';
 import { FavsComponent } from './components/favs/favs.component';
+import { PagedComponent } from './components/paged/paged.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FavsComponent } from './components/favs/favs.component';
     CardComponent,
     CardsComponent,
     AllComponent,
-    FavsComponent
+    FavsComponent,
+    PagedComponent
   ],
   imports: [
     BrowserModule,
