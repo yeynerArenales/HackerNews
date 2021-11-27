@@ -9,6 +9,10 @@ export class CardComponent implements OnInit {
 
   @Input() index: number = 0
   @Input() fav: boolean = true
+  @Input() story_url: string = ""
+  @Input() story_title: string = ""
+  @Input() created_at: string = ""
+
 
   constructor() { }
 

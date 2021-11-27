@@ -1,5 +1,5 @@
-<div *ngFor="let article of info; index as i">                                                                                                                                                                                                                                                                                                                                                                    
-    <app-card 
+<div class="grid-container">                                                                                                                                                                                                                                                                                                                                                                    
+    <app-card  *ngFor="let article of info; index as i"
     [story_url]="article.story_url"
     [story_title]="article.story_title"
     [created_at]="article.created_at"
