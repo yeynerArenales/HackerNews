@@ -1,11 +1,13 @@
 .Rectangle {
     width: 98px;
     height: 31px;
-    padding: 3px 39px 0 40px;
     border-radius: 2px;
     text-align: center;
     border: solid 1px #d6d6d6;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .All {
@@ -22,4 +24,16 @@
     font-weight: 600;
     line-height: 1.75;
     color: #606060;
+}
+
+.Rectangle-Faves {
+    width: 98px;
+    height: 31px;
+    border-radius: 2px;
+    border: solid 1px #d6d6d6;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
