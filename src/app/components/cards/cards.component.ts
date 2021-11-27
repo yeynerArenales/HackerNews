@@ -11,12 +11,16 @@ import { TagsService } from 'src/app/services/tags.service';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
- 
+
   public info: Article[] = [];
   private frameworkSelected$: Observable<string>;
   private tag$: Observable<string>;
-  public framework: string =  '';
+  private numberPages$: Observable<number>;
+  private pageSelected$: Observable<number>;
+  public framework: string = '';
   public tag: string = '';
+  public pages: number = 8;
+  public page: number = 1;
 
   constructor(
     private searchSvc: SearchService,
@@ -25,7 +29,9 @@ export class CardsComponent implements OnInit {
   ) {
     this.frameworkSelected$ = this.searchSvc.getFramework()
     this.tag$ = this.tagSvc.getTag()
-   }
+    this.numberPages$ = this.searchSvc.getNumberPages()
+    this.pageSelected$ = this.searchSvc.getPageSelected()
+  }
 
   ngOnInit(): void {
     this.tag$.subscribe(
@@ -34,41 +40,49 @@ export class CardsComponent implements OnInit {
         this.validateTag(tag);
       }
     )
-    
     this.frameworkSelected$.subscribe(
       framework => {
-        if(this.tag == 'All'){
+        if (this.tag == 'All') {
           this.framework = framework
           this.getData(framework);
         }
       }
     )
-    
+    this.numberPages$.subscribe(
+      pag => this.pages = pag
+    )
+    this.pageSelected$.subscribe(
+      p => {
+        this.page = p;
+        this.getInfo(this.framework, this.page)
+      }
+    )
   }
 
-  validateTag(tag: string){
-    if(tag == 'All')
-      this.getInfo(this.framework)
+  validateTag(tag: string) {
+    if (tag == 'All')
+      this.getInfo(this.framework, this.page)
     else
-    this.info = this.favsSvc.getFaves();
+      this.info = this.favsSvc.getFaves();
   }
 
-  getData(framework: string = ""){
-    if(this.tag != 'All'){
+  getData(framework: string = "") {
+    if (this.tag != 'All') {
       this.info = this.favsSvc.getFaves();
-    }else{
-      this.getInfo(framework)
+    } else {
+      this.getInfo(framework, this.page)
     }
   }
 
-  getfavs(){
+  getfavs() {
     this.info = this.favsSvc.getFaves();
   }
 
-  getInfo(framework: string){
-    if(framework != ''){
-      this.searchSvc.getInfo(framework, 0).subscribe(data => {
+  getInfo(framework: string, page: number) {
+    if (framework != '') {
+      this.searchSvc.getInfo(framework, page).subscribe(data => {
         this.info = this.setInfoData(data.hits)
+        this.validatePages(data.nbPages)
       }, err => {
         console.error(err)
       })
@@ -76,21 +90,26 @@ export class CardsComponent implements OnInit {
   }
 
   setInfoData(data: any[]): Article[] {
-    let response : Article[] = []
+    let response: Article[] = []
     data.forEach((element: any) => {
       response.push(this.destructuringArticle(element))
     })
     return response;
   }
 
-  destructuringArticle(article: any): Article{
-    let { author, story_title, story_url, created_at} = article
-    return{
+  destructuringArticle(article: any): Article {
+    let { author, story_title, story_url, created_at } = article
+    return {
       author,
       story_title,
       story_url,
       created_at
-    } 
+    }
+  }
+
+  validatePages(nbPages: number) {
+    if (nbPages != this.pages)
+      this.searchSvc.changeNumberPages(nbPages)
   }
 
 }

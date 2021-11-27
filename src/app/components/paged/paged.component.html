@@ -4,55 +4,26 @@
             &lt;
         </div>
     </div>
-    <div class="Rectangle-Active" (click)="changePage()">
-        <span class="text-Active">
-            1
-        </span>
-    </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            2
+    <div *ngFor="let p of pages; let i = index">
+        <div *ngIf="i<=8">
+            <div *ngIf="page != p else selected" class="Rectangle-3-Copy-10" (click)="changePage(p)">
+                <div class="Rectangle">
+                    {{p}}
+                </div>
+            </div>
+            <ng-template #selected>
+                <div class="Rectangle-Active">
+                    <span class="text-Active">
+                        {{p}}
+                    </span>
+                </div>
+            </ng-template>
         </div>
     </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            3
-        </div>
-    </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            4
-        </div>
-    </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            5
-        </div>
-    </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            6
-        </div>
-    </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            7
-        </div>
-    </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            8
-        </div>
-    </div>
-    <div class="Rectangle-3-Copy-10">
-        <div class="Rectangle">
-            9
-        </div>
-    </div>
+
     <div class="Rectangle-3-Copy-10">
         <div class="Rectangle">
             &gt;
         </div>
     </div>
 </div>
-

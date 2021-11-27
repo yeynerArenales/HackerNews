@@ -1,52 +1,52 @@
 .Rectangle-3-Copy-10 {
-    width: 32px;
-    height: 32px;
-    margin: 0 8px 0 0;
-    border-radius: 6px;
-    border: solid 1px #d9d9d9;
-    background-color: #fff;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 8px 0 0;
+  border-radius: 6px;
+  border: solid 1px #d9d9d9;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Rectangle {
-    width: 8px;
-    height: 22px;
-    font-family: 'Roboto', sans-serif;;
-    font-size: 14px;
-    text-align: center;
-    line-height: 1.57;;
-    font-weight: 600;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.65);
+  width: 8px;
+  height: 22px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.57;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
 }
 
-.pagedContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.pagedContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Rectangle-Active {
-    width: 32px;
-    height: 32px;
-    margin: 0 8px 0 0;
-    border-radius: 6px;
-    cursor: pointer;
-    background-color: #1890ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 8px 0 0;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #1890ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.text-Active{
-    width: 8px;
-    height: 22px;
-    font-family: 'Roboto', sans-serif;;
-    font-size: 14px;
-    text-align: center;
-    line-height: 1.57;
-    color: #fff;
+.text-Active {
+  width: 8px;
+  height: 22px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.57;
+  color: #fff;
 }

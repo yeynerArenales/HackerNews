@@ -9,6 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 export class SearchService {
 
   private frameworkSelected = new BehaviorSubject<string>('');
+  private numberPages = new BehaviorSubject<number>(9);
+  private pagedSelected = new BehaviorSubject<number>(1);
 
   constructor(private http: HttpClient) { }
 
@@ -26,5 +28,20 @@ export class SearchService {
   getFramework(): Observable<string> {
     return this.frameworkSelected.asObservable();
   }
-  
+
+  getNumberPages(): Observable<number> {
+    return this.numberPages.asObservable();
+  }
+
+  changeNumberPages(pages: number) {
+    this.numberPages.next(pages);
+  }
+
+  getPageSelected(): Observable<number> {
+    return this.pagedSelected.asObservable();
+  }
+
+  changePageSelected(page: number) {
+    this.pagedSelected.next(page);
+  }
 }

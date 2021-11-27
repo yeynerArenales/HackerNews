@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-paged',
@@ -7,12 +9,35 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PagedComponent implements OnInit {
 
-  constructor() { }
+  private numberPages$: Observable<number>;
+  public pages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  public page: number = 1;
 
-  ngOnInit(): void {
+  constructor(
+    private searchSvc: SearchService,
+  ) {
+    this.numberPages$ = this.searchSvc.getNumberPages()
   }
 
-  changePage(){
+  ngOnInit(): void {
+    this.numberPages$.subscribe(
+      pag => {
+        this.setPages(pag);
+      }
+    )
+  }
+
+  changePage(page: number) {
+    console.log(page)
+    this.page = page;
+    this.searchSvc.changePageSelected(page);
+  }
+
+  setPages(nbPages: number) {
+    this.pages = []
+    for (let index = 1; index <= nbPages; index++) {
+      this.pages.push(index)
+    }
   }
 
 }
