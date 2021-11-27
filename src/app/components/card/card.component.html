@@ -11,7 +11,8 @@
         </span>
     </div>
     <div class="Rectangle-Hearth">
-        <img *ngIf="!fav" src="../../../assets/images/favorite.png" class="iconmonstr-favorite-2">
+        <img *ngIf="!fav" src="../../../assets/images/favorite.png" class="iconmonstr-favorite-2"
+            (click)="addToFavorite()">
         <img *ngIf="fav" src="../../../assets/images/fav.png" class="iconmonstr-favorite-2">
     </div>
 </div>

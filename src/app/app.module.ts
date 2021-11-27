@@ -11,10 +11,12 @@ import { TagsComponent } from './components/tags/tags.component';
 import { SelectComponent } from './components/select/select.component';
 import { CardComponent } from './components/card/card.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { AllComponent } from './components/all/all.component';
 
 import { SearchService } from './services/search.service';
 import { TagsService } from './services/tags.service';
-import { AllComponent } from './components/all/all.component';
+import { FavesService } from './services/faves.service';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { AllComponent } from './components/all/all.component';
   ],
   providers: [
     SearchService,
-    TagsService
+    TagsService,
+    FavesService
   ],
   bootstrap: [AppComponent]
 })
