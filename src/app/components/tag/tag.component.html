@@ -1,12 +1,17 @@
-<div *ngIf="title == 'All' else favs" class="Rectangle" (click)="tagSelect('All')">
-    <span class="All">
+<div 
+    *ngIf="title == 'All' else favs" 
+    [ngClass]="{'Rectangle': !validateAllSelected(), 'RectangleActive': validateAllSelected()}" 
+    (click)="tagSelect('All')">
+    <span [ngClass]="{'All': !validateAllSelected(), 'textActive': validateAllSelected()}">
         {{title}}
     </span>
 </div>
 
 <ng-template #favs> 
-    <div class="Rectangle-Faves" (click)="tagSelect('myFaves')">
-        <span class="My-faves">
+    <div 
+    [ngClass]="{'Rectangle-Faves': validateAllSelected(), 'RectangleActive': !validateAllSelected()}"  
+    (click)="tagSelect('myFaves')">
+        <span [ngClass]="{'My-faves': validateAllSelected(), 'textActive': !validateAllSelected()}">
             {{title}}
         </span>
     </div>

@@ -18,4 +18,12 @@ export class TagComponent implements OnInit {
     localStorage.setItem("tagSelected", tag);
   }
 
+  validateAllSelected(): boolean{
+    let tag: string | null = localStorage.getItem("tagSelected")
+    if(tag == "All")
+      return true
+    else
+      return false
+  }
+
 }
