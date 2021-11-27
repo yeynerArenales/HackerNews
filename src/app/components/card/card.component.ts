@@ -56,4 +56,12 @@ export class CardComponent implements OnInit {
       this.fav = true
   }
 
+  redirectTo(url: string){
+    if(url != null){
+      window.open(url, "_blank");
+    }else{
+      console.error("This news has no url.")
+    }
+  }
+
 }

@@ -1,5 +1,5 @@
 <div [ngClass]="{'Rectangle-left': isOdd(index), 'Rectangle-right': !isOdd(index)}">
-    <div>
+    <div class="rectangleInfo" (click)="redirectTo(story_url)">
         <div class="time">
             <img src="../../../assets/images/watch.png" class="iconmonstr-time-2">
             <span class="-hours-ago-by-autho">

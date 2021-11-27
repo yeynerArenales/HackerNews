@@ -85,3 +85,8 @@ img.iconmonstr-favorite-2 {
     object-fit: contain;
     cursor: pointer;
 }
+
+.rectangleInfo:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
