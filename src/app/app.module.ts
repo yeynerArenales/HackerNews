@@ -16,6 +16,7 @@ import { AllComponent } from './components/all/all.component';
 import { SearchService } from './services/search.service';
 import { TagsService } from './services/tags.service';
 import { FavesService } from './services/faves.service';
+import { FavsComponent } from './components/favs/favs.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FavesService } from './services/faves.service';
     SelectComponent,
     CardComponent,
     CardsComponent,
-    AllComponent
+    AllComponent,
+    FavsComponent
   ],
   imports: [
     BrowserModule,

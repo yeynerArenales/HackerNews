@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { SearchService } from '../../services/search.service';
+import { FavesService } from 'src/app/services/faves.service';
 
 @Component({
   selector: 'app-cards',
@@ -10,13 +11,27 @@ import { SearchService } from '../../services/search.service';
 export class CardsComponent implements OnInit {
 
   public info: Article[] = [];
+  @Input() favs: boolean = false;
 
   constructor(
-    private searchSvc: SearchService
+    private searchSvc: SearchService,
+    private favsSvc: FavesService
   ) { }
 
   ngOnInit(): void {
-    this.getInfo();
+    this.getData();
+  }
+
+  getData(){
+    if(this.favs){
+      this.info = this.favsSvc.getFaves();
+    }else{
+      this.getInfo()
+    }
+  }
+
+  getfavs(){
+    this.info = this.favsSvc.getFaves();
   }
 
   getInfo(){
