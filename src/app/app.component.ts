@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.tag$.subscribe(
       tag => {
-        console.log(tag)
         this.tag = tag
       }
     )

@@ -25,6 +25,8 @@ export class TagComponent implements OnInit {
 
   validateAllSelected(): boolean{
     let tag: string | null = localStorage.getItem("tagSelected")
+    if(tag == null)
+      tag = 'All'
     if(tag == "All")
       return true
     else
