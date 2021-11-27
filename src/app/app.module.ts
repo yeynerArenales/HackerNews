@@ -13,6 +13,7 @@ import { CardComponent } from './components/card/card.component';
 import { CardsComponent } from './components/cards/cards.component';
 
 import { SearchService } from './services/search.service';
+import { TagsService } from './services/tags.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SearchService } from './services/search.service';
     HttpClientModule
   ],
   providers: [
-    SearchService
+    SearchService,
+    TagsService
   ],
   bootstrap: [AppComponent]
 })

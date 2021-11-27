@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { TagsService } from '../../services/tags.service';
+
 @Component({
   selector: 'app-tag',
   templateUrl: './tag.component.html',
@@ -9,13 +11,16 @@ export class TagComponent implements OnInit {
 
   @Input() title :string = "";
 
-  constructor() { }
+  constructor(
+    private tagSvc: TagsService
+  ) { }
 
   ngOnInit(): void {
   }
 
   tagSelect( tag: string ): void{
     localStorage.setItem("tagSelected", tag);
+    this.tagSvc.changeTag(tag);
   }
 
   validateAllSelected(): boolean{
