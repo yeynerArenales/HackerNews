@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { FavesService } from 'src/app/services/faves.service';
 
+import * as timeago from 'timeago.js';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -16,12 +18,15 @@ export class CardComponent implements OnInit {
   @Input() created_at: string = ""
   @Input() author: string = ""
 
+  public time = timeago;
+
   constructor(
     private favSvc: FavesService
   ) { }
 
   ngOnInit(): void {
     this.favSvc.getFaves()
+    this.includeFav()
   }
 
   isOdd(num: number): boolean {
@@ -32,6 +37,7 @@ export class CardComponent implements OnInit {
   }
 
   addToFavorite() {
+    this.fav = true;
     this.favSvc.addFav(this.destructuringArticle());
   }
 
@@ -43,6 +49,11 @@ export class CardComponent implements OnInit {
       story_url,
       created_at
     }
+  }
+
+  includeFav() {
+    if (this.favSvc.includeFav(this.destructuringArticle()))
+      this.fav = true
   }
 
 }

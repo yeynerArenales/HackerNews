@@ -22,7 +22,6 @@ export class CardsComponent implements OnInit {
   getInfo(){
     this.searchSvc.getInfo('angular', 0).subscribe(data => {
       this.info = this.setInfoData(data.hits)
-      console.log(this.info)
     }, err => {
       console.error(err)
     })

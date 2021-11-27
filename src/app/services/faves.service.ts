@@ -23,4 +23,12 @@ export class FavesService {
       localStorage.setItem("faves", JSON.stringify(faves))
     }
   }
+
+  includeFav(article: Article): boolean {
+    let faves: Article[] = this.getFaves()
+    if (faves.find(e => e.story_title == article.story_title))
+      return true
+    else
+      return false
+  }
 }
