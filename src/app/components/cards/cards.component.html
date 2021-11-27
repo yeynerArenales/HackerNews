@@ -1,3 +1,8 @@
-<div>                                                                                                                                                                                                                                                                                                                                                                    
-    <app-card></app-card>
+<div *ngFor="let article of info; index as i">                                                                                                                                                                                                                                                                                                                                                                    
+    <app-card 
+    [story_url]="article.story_url"
+    [story_title]="article.story_title"
+    [created_at]="article.created_at"
+    [index]="i"
+    ></app-card>
 </div>
