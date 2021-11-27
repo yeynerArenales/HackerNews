@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Framework } from 'src/app/models/framework';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-select',
@@ -8,17 +10,32 @@ import { Framework } from 'src/app/models/framework';
 })
 export class SelectComponent implements OnInit {
 
+  private frameworkSelected$: Observable<string>;
+
   public frameworks: Framework[] = [
-    { value: 'angular', title: "Angular"},
-    { value: 'react', title: "React"},
-    { value: 'vue', title: "Vuejs"}
+    { value: 'angular', title: "Angular" },
+    { value: 'reactjs', title: "React" },
+    { value: 'vuejs', title: "Vuejs" }
   ]
   public selectedFramework: any = "";
 
-  constructor() { }
+  constructor(
+    private searchSvc: SearchService
+  ) {
+    this.frameworkSelected$ = this.searchSvc.getFramework()
+  }
 
   ngOnInit(): void {
+    this.frameworkSelected$.subscribe(
+      framework => {
+        this.selectedFramework = framework
+      }
+    )
+  }
 
+  frameworkChange() {
+    localStorage.setItem("selectedFramework", this.selectedFramework)
+    this.searchSvc.changeFramework(this.selectedFramework);
   }
 
 }

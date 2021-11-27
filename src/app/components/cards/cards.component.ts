@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { SearchService } from '../../services/search.service';
 import { FavesService } from 'src/app/services/faves.service';
+import { Observable } from 'rxjs';
+import { TagsService } from 'src/app/services/tags.service';
 
 @Component({
   selector: 'app-cards',
@@ -9,24 +11,53 @@ import { FavesService } from 'src/app/services/faves.service';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-
+ 
   public info: Article[] = [];
-  @Input() favs: boolean = false;
+  private frameworkSelected$: Observable<string>;
+  private tag$: Observable<string>;
+  public framework: string =  '';
+  public tag: string = '';
 
   constructor(
     private searchSvc: SearchService,
-    private favsSvc: FavesService
-  ) { }
+    private favsSvc: FavesService,
+    private tagSvc: TagsService
+  ) {
+    this.frameworkSelected$ = this.searchSvc.getFramework()
+    this.tag$ = this.tagSvc.getTag()
+   }
 
   ngOnInit(): void {
-    this.getData();
+    this.tag$.subscribe(
+      tag => {
+        this.tag = tag;
+        this.validateTag(tag);
+      }
+    )
+    
+    this.frameworkSelected$.subscribe(
+      framework => {
+        if(this.tag == 'All'){
+          this.framework = framework
+          this.getData(framework);
+        }
+      }
+    )
+    
   }
 
-  getData(){
-    if(this.favs){
+  validateTag(tag: string){
+    if(tag == 'All')
+      this.getInfo(this.framework)
+    else
+    this.info = this.favsSvc.getFaves();
+  }
+
+  getData(framework: string = ""){
+    if(this.tag != 'All'){
       this.info = this.favsSvc.getFaves();
     }else{
-      this.getInfo()
+      this.getInfo(framework)
     }
   }
 
@@ -34,12 +65,14 @@ export class CardsComponent implements OnInit {
     this.info = this.favsSvc.getFaves();
   }
 
-  getInfo(){
-    this.searchSvc.getInfo('angular', 0).subscribe(data => {
-      this.info = this.setInfoData(data.hits)
-    }, err => {
-      console.error(err)
-    })
+  getInfo(framework: string){
+    if(framework != ''){
+      this.searchSvc.getInfo(framework, 0).subscribe(data => {
+        this.info = this.setInfoData(data.hits)
+      }, err => {
+        console.error(err)
+      })
+    }
   }
 
   setInfoData(data: any[]): Article[] {

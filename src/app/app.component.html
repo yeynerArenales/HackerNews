@@ -1,6 +1,8 @@
 <div class="Front-End-Test---Home-view">
     <app-header></app-header>
     <app-tags></app-tags>
-    <app-all *ngIf="tag == 'All'"></app-all>
-    <app-favs *ngIf="tag != 'All'"></app-favs>
+    <app-all *ngIf="tag == 'All' else favs"></app-all>
+    <ng-template #favs>
+        <app-favs></app-favs>
+    </ng-template>
 </div>

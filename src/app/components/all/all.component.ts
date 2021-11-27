@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-all',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private searchSvc: SearchService
+  ) { }
 
   ngOnInit(): void {
+    this.getLocalStorageFramework()
+  }
+
+  getLocalStorageFramework(){
+    let framework: string | null = localStorage.getItem('selectedFramework')
+    if(framework != null){
+      this.searchSvc.changeFramework(framework);
+    }
   }
 
 }
