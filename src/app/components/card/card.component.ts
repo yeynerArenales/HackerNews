@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() index: number = 0
-  @Input() fav: boolean = true
+  @Input() fav: boolean = false
   @Input() story_url: string = ""
   @Input() story_title: string = ""
   @Input() created_at: string = ""

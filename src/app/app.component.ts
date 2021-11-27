@@ -16,13 +16,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     private tagSvc: TagsService
-  ){
+  ) {
     this.tag$ = this.tagSvc.getTag()
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.tag$.subscribe(
-      tag => this.tag = tag
+      tag => {
+        this.tag = tag
+      }
     )
   }
 }
