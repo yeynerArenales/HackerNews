@@ -10,6 +10,7 @@ import { SearchService } from 'src/app/services/search.service';
 export class PagedComponent implements OnInit {
 
   private numberPages$: Observable<number>;
+  private pageSelected$: Observable<number>;
   public pages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   public page: number = 1;
 
@@ -17,6 +18,7 @@ export class PagedComponent implements OnInit {
     private searchSvc: SearchService,
   ) {
     this.numberPages$ = this.searchSvc.getNumberPages()
+    this.pageSelected$ = this.searchSvc.getPageSelected()
   }
 
   ngOnInit(): void {
@@ -25,18 +27,36 @@ export class PagedComponent implements OnInit {
         this.setPages(pag);
       }
     )
+    this.pageSelected$.subscribe(
+      p => {
+        this.page = p;
+      }
+    )
   }
 
   changePage(page: number) {
-    console.log(page)
     this.page = page;
     this.searchSvc.changePageSelected(page);
   }
 
   setPages(nbPages: number) {
     this.pages = []
-    for (let index = 1; index <= nbPages; index++) {
+    for (let index = 1; index <= nbPages-1; index++) {
       this.pages.push(index)
+    }
+  }
+
+  changePagePrevious(){
+    if(this.page > 1){
+      this.page -= 1;
+      this.searchSvc.changePageSelected(this.page);
+    }
+  }
+  
+  changePageNext(){
+    if(this.page < this.pages[this.pages.length -1]){
+      this.page += 1;
+      this.searchSvc.changePageSelected(this.page);
     }
   }
 

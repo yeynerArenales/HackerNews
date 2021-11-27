@@ -36,6 +36,7 @@ export class SelectComponent implements OnInit {
   frameworkChange() {
     localStorage.setItem("selectedFramework", this.selectedFramework)
     this.searchSvc.changeFramework(this.selectedFramework);
+    this.searchSvc.changePageSelected(1);
   }
 
 }

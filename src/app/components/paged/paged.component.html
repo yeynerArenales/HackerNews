@@ -1,5 +1,5 @@
 <div class="pagedContainer">
-    <div class="Rectangle-3-Copy-10">
+    <div class="Rectangle-3-Copy-10" (click)="changePagePrevious()">
         <div class="Rectangle">
             &lt;
         </div>
@@ -20,8 +20,12 @@
             </ng-template>
         </div>
     </div>
-
-    <div class="Rectangle-3-Copy-10">
+    <div *ngIf="page > 9" class="Rectangle-Active">
+        <span class="text-Active">
+            {{page}}
+        </span>
+    </div>
+    <div class="Rectangle-3-Copy-10" (click)="changePageNext()">
         <div class="Rectangle">
             &gt;
         </div>
