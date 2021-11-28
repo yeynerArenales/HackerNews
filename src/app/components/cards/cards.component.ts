@@ -23,6 +23,7 @@ export class CardsComponent implements OnInit {
   public page: number = 1;
   public reload: boolean = false;
   public numberValidate: number = 0;
+  public numberPaginated: number = 0;
 
   constructor(
     private searchSvc: SearchService,
@@ -60,7 +61,8 @@ export class CardsComponent implements OnInit {
     )
     this.pageSelected$.subscribe(
       p => {
-        if(this.page != p ){
+        this.numberPaginated ++;
+        if(this.page != p && this.numberValidate == 1){
           this.reload = true;
           this.page = p;
           this.getInfo(this.framework, this.page)
@@ -70,7 +72,6 @@ export class CardsComponent implements OnInit {
   }
 
   validateTag(tag: string) {
-    console.log("validateTag")
     if (tag == 'All')
       this.getInfo(this.framework, this.page)
     else
