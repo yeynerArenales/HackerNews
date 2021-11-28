@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { FavesService } from 'src/app/services/faves.service';
 
@@ -17,6 +17,7 @@ export class CardComponent implements OnInit {
   @Input() story_title: string = ""
   @Input() created_at: string = ""
   @Input() author: string = ""
+  @Output() deleted = new EventEmitter();
 
   public time = timeago;
 
@@ -62,6 +63,11 @@ export class CardComponent implements OnInit {
     }else{
       console.error("This news has no url.")
     }
+  }
+
+  deleteFav(){
+    this.fav = false
+    this.deleted.emit(this.destructuringArticle())
   }
 
 }

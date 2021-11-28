@@ -31,4 +31,14 @@ export class FavesService {
     else
       return false
   }
+
+  deleteFav(article: Article) {
+    let faves: Article[] = this.getFaves()
+    faves.forEach((element, i) => {
+      if(element.story_title == article.story_title){
+        faves.splice(i, 1); 
+      }
+    });
+    localStorage.setItem("faves", JSON.stringify(faves))
+  }
 }

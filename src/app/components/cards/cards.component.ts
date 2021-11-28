@@ -21,6 +21,8 @@ export class CardsComponent implements OnInit {
   public tag: string = '';
   public pages: number = 8;
   public page: number = 1;
+  public reload: boolean = false;
+  public numberValidate: number = 0;
 
   constructor(
     private searchSvc: SearchService,
@@ -36,15 +38,20 @@ export class CardsComponent implements OnInit {
   ngOnInit(): void {
     this.tag$.subscribe(
       tag => {
-        this.tag = tag;
-        this.validateTag(tag);
+        this.numberValidate ++
+        if(this.numberValidate == 1){
+          this.tag = tag;
+          this.reload = true;
+          this.validateTag(tag);
+        }
       }
     )
     this.frameworkSelected$.subscribe(
       framework => {
         if (this.tag == 'All') {
+          this.reload = true;
           this.framework = framework
-          this.getData(framework);
+          this.getInfo(framework, this.page)
         }
       }
     )
@@ -53,25 +60,21 @@ export class CardsComponent implements OnInit {
     )
     this.pageSelected$.subscribe(
       p => {
-        this.page = p;
-        this.getInfo(this.framework, this.page)
+        if(this.page != p ){
+          this.reload = true;
+          this.page = p;
+          this.getInfo(this.framework, this.page)
+        }
       }
     )
   }
 
   validateTag(tag: string) {
+    console.log("validateTag")
     if (tag == 'All')
       this.getInfo(this.framework, this.page)
     else
       this.info = this.favsSvc.getFaves();
-  }
-
-  getData(framework: string = "") {
-    if (this.tag != 'All') {
-      this.info = this.favsSvc.getFaves();
-    } else {
-      this.getInfo(framework, this.page)
-    }
   }
 
   getfavs() {
@@ -79,7 +82,8 @@ export class CardsComponent implements OnInit {
   }
 
   getInfo(framework: string, page: number) {
-    if (framework != '') {
+    if (framework != '' && this.reload) {
+      this.reload = false;
       this.searchSvc.getInfo(framework, page).subscribe(data => {
         this.info = this.setInfoData(data.hits)
         this.validatePages(data.nbPages)
@@ -112,4 +116,10 @@ export class CardsComponent implements OnInit {
       this.searchSvc.changeNumberPages(nbPages)
   }
 
+
+  deleteFav(event: any){
+    this.favsSvc.deleteFav(event);
+    if(this.tag != "All")
+      this.getfavs()
+  }
 }
